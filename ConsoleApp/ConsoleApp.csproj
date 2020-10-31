@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <StartupObject>ConsoleApp.Program</StartupObject>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="entityframework" Version="6.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSharp\CSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Migrations\201911272011047_AddPersonModel.resx">
+      <DependentUpon>201911272011047_AddPersonModel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
