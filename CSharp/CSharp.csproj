@@ -9,8 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Complexity\" />
-    <Folder Include="Testing\" />
+    <Compile Remove="Complexity\**" />
+    <Compile Remove="Testing\**" />
+    <EmbeddedResource Remove="Complexity\**" />
+    <EmbeddedResource Remove="Testing\**" />
+    <EntityDeploy Remove="Complexity\**" />
+    <EntityDeploy Remove="Testing\**" />
+    <None Remove="Complexity\**" />
+    <None Remove="Testing\**" />
   </ItemGroup>
 
   <ItemGroup>
