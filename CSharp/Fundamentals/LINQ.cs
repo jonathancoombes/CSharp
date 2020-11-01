@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -9,17 +10,31 @@ namespace ConsoleApp.Fundamentals
 {
     class LINQ
     {
+                 
+
+        public void DisplayBookResults() { 
+
         //Using LINQ to create a list of books matching given expression
 
-        IEnumerable<Book> Books = new Book().GetBooks().Where(b => b.Price < 201);
+        IEnumerable<Book> Books = new Book().GetBooks()
+                            .Where(b => b.Price < 201)
+                            .OrderBy(b => b.Title)
+                            .Select(b => b);
 
-        public void DisplayResult() { 
+
+            //Alternative LINQ syntax for the same query
+
+            var betterBooks = from book in Books 
+                              where book.Price < 201 
+                              orderby book.Title 
+                              select book;
         
             foreach(var book in Books){
                 Console.WriteLine("Title: " + book.Title + "Price: " + book.Price);
             }
         
-        }        
+        }
+        
 
     }
 
