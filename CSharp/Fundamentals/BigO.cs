@@ -7,17 +7,52 @@ using static System.Console;
 namespace ConsoleApp.Fundamentals
 {
 
+    // Task: Search, find and resolve problems
+
+    // Problem #1: No null or empty check for the input array
+    // Solution #1 Applied: Created a Helper Function using generics to Check Array for a null or empty state
+
+    // Problem #2: In BigOLogN, no sorting was applied to the input array as required for the function
+    // Solution #2 Applied: Sorted the input array before use
+
+    // Problem #3: In BigOLogN, the function did not return the correct index in case of upper value
+    // Solution #3 Applied: Rewrote function to correct midpoint tracking / calculation
+
+    // Problem #4: In function BigOLogN the "ops" variable was not incremented upon operation
+    // Solution #4: Incremented counter per operation
+
+    // Problem #5: In both functions BigOn2 and BigOn3 the iterated value was never called during the foreach iteration.
+    // Solution #5: Added the necessary variable for display of iteration
+
+
     //The following BigO class aims to demonstrate the main Big O runtime examples and concepts to understand
 
-    class BigO
+    public class BigO 
     {
+
+         // Solution #1: Helper Function
+
+            public bool ArrayNullorEmpty <T> (T[] array)
+            {
+                if(array != null && array.Length != 0)
+                {
+                    return false;
+                } 
+                return true;
+            }
+
 
         // O(1)
         // Explanation: Runs in constant time
         // Example
+        
         public void BigO1(int[] nums)
         {
-            WriteLine(nums[0]);
+            if (!ArrayNullorEmpty(nums))
+            {
+                WriteLine(nums[0]);
+            }
+            
         }
 
         // O(Log n)
@@ -31,20 +66,44 @@ namespace ConsoleApp.Fundamentals
 
         public bool BigOLogN(int num, int[] setNums)
         {
-            int midPoint = setNums.Length / 2;
             int ops = 0;
+            
+            // Solution #2 Sorting Array
 
-            while (setNums[midPoint] != num)
+            Array.Sort(setNums);
+
+            // Solution #3 Corrected midpoint tracking / calculation
+
+            int midPoint = 0;
+            int minVal = 0;
+          
+            if (!ArrayNullorEmpty(setNums))
             {
-                if (num < setNums[midPoint])
+                int maxVal = setNums.Length - 1;
+
+                while (minVal <= maxVal)
                 {
-                    midPoint /= 2;
-                }
-                else
-                {
-                    midPoint = (midPoint - setNums.Length) / 2;
+                    // Solution #4 Counting operations
+
+                    ops++;
+
+                    midPoint = (minVal + maxVal) / 2;
+
+                    if (num == setNums[midPoint])
+                    {
+                        break;
+                    }
+                    if (num < setNums[midPoint])
+                    {
+                        maxVal = minVal - 1;
+                    }
+                    else
+                    {
+                        minVal = midPoint + 1;
+                    }
                 }
             }
+
             Console.WriteLine($"Value found at position: {midPoint}");
             Console.WriteLine($"The search took: {ops} operations");
 
@@ -55,15 +114,18 @@ namespace ConsoleApp.Fundamentals
         // O(n)
         // Explanation: Runs in linear time. Grows in linear time in accordance with input size.
         // Example
+
         public void BigOn(int[] nums)
         {
-            foreach (var num in nums)
+            if (ArrayNullorEmpty(nums))
             {
-                WriteLine(num);
+                foreach (var num in nums)
+                {
+                    WriteLine(num);
+                }
             }
 
         }
-
 
         // O(n^2)
         // Explanation: Runs in n squared or n x n time. 
@@ -71,38 +133,48 @@ namespace ConsoleApp.Fundamentals
 
         public void BigOn2(int[] nums)
         {
-            foreach (var num in nums)
+            if (ArrayNullorEmpty(nums))
             {
+                foreach (var num in nums)
+                {
+                    // Solution 5: Added call to iteration variable to display result
 
-                foreach (var num2 in nums) { }
+                    WriteLine(num);
 
-                WriteLine("This is Big O(n^2)");
+                    foreach (var num2 in nums)
+                    {
+                        WriteLine(num2);
+                    }
 
+                    WriteLine("This is Big O(n^2)");
+                }
             }
-
         }
-
-
+        
         // O(n^3)
         // Explanation: Runs in n cubed or n x n x n time. 
         // Example
 
         public void BigOn3(int[] nums)
         {
-            foreach (var num in nums)
+            if (ArrayNullorEmpty(nums))
             {
-
-                foreach (var num2 in nums)
+                foreach (var num in nums)
                 {
+                    WriteLine(num);
 
-                    foreach (var num3 in nums)
+                    foreach (var num2 in nums)
                     {
-                        WriteLine("This is Big O(n^2)");
+                        WriteLine(num2);
+
+                        foreach (var num3 in nums)
+                        {
+                            WriteLine(num3);
+
+                            WriteLine("This is Big O(n^2)");
+                        }
                     }
-
-                    
                 }
-
             }
         }
 

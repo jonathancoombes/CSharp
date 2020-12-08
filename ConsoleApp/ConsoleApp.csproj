@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="entityframework" Version="6.3.0" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\CSharp\CSharp.csproj" />
   </ItemGroup>
