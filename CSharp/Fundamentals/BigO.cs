@@ -117,7 +117,7 @@ namespace ConsoleApp.Fundamentals
 
         public void BigOn(int[] nums)
         {
-            if (ArrayNullorEmpty(nums))
+            if (!ArrayNullorEmpty(nums))
             {
                 foreach (var num in nums)
                 {
@@ -133,7 +133,7 @@ namespace ConsoleApp.Fundamentals
 
         public void BigOn2(int[] nums)
         {
-            if (ArrayNullorEmpty(nums))
+            if (!ArrayNullorEmpty(nums))
             {
                 foreach (var num in nums)
                 {
@@ -157,7 +157,7 @@ namespace ConsoleApp.Fundamentals
 
         public void BigOn3(int[] nums)
         {
-            if (ArrayNullorEmpty(nums))
+            if (!ArrayNullorEmpty(nums))
             {
                 foreach (var num in nums)
                 {
